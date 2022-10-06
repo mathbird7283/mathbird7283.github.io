@@ -39,15 +39,18 @@ Listed here are twenty-three things that have happened since that fateful day.</
 </ol>
 
 <h3>How Things Will Work</h3>
-<p>In this project I wil analyze, using graphical methods (e.g. do-calculus and SWIGs) exactly how the pandemic and the measures we took in response to it, most likely, affected the answers to these questions -- also considering the <i>separate</i> question as to what would happen if we undid the pandemic as a concrete intervention.</p>
+<p>In this project, I seek to analyze, using graphical methods (e.g. do-calculus and SWIGs) exactly how the pandemic and the measures we took in response to it, most likely, affected the (statistically most likely) answers to these questions -- also considering the <i>separate</i> question as to what would happen if we undid the pandemic as a concrete intervention. This is obviously a somewhat open-ended but fascinating project, and may provide some suggestions as to the world's handling of future health crises.</p>
 
-<p>The cornerstone of this project is to build a series of large causal graphs, and use d-separation to identify which of the above events are independent of the pandemic and/or the interventions used to combat it. My work towards answering these questions will make use of the results from Malinsky, Shpitser, and Richardson's <a href="https://proceedings.mlr.press/v89/malinsky19b/malinsky19b.pdf">paper</a>. Three of note are as follows:</p>
+<p>The cornerstone of this project is to build a series of large causal graphs, and use d-separation to identify which of the above events are independent of the pandemic and/or the interventions used to combat it. My work towards answering these questions will make use of the results from <a href="https://proceedings.mlr.press/v89/malinsky19b/malinsky19b.pdf">Malinsky, Shpitser, and Richardson's paper</a><a href="citation">[1]</a>. Three of note are as follows:</p>
 
-Since most of our random variables are binary, and a few take on distinct numerical values, we can define a causal model with series of DAGs.
+<p>Since most of our random variables (each of the questions above is a random variable, as are the interventions we make) are binary, and a few take on distinct numerical values, we can define a causal model with series of DAGs. These DAGs will start with the pandemic itself, end with the answer to one of the above questions, and generally branch out without loops (as the 23 questions above do not seem to be dependent on each other).
+</p>
 
-Many graphs in this project will be mixed, as there are pairs of happenstances (e.g. number of customers at a restaurant and likelihood it will shut down) that both affect each other. This implies the eistence of hidden variables.
+<p>Many graphs in this project will be mixed, as there are pairs of happenstances (e.g. number of customers at a restaurant and likelihood it will shut down) that both affect each other. This implies the eistence of hidden variables.
+</p>
 
-Proper causal paths and path-specific effects will certainly appear == the pandemic and its preventative measures define a small number of sources, and there will be multiple paths from the sources to the answers to each of these questions.
+<p>Proper causal paths and path-specific effects will certainly appear == the pandemic and its preventative measures define a small number of sources, and there will be multiple paths from the sources to the answers to each of these questions.
+</p>
 
-
+<p id="citation">[1] Malinsky, Daniel; Shipster, Ilya; Richardson, Thomas (2019) "A Potential Outcomes Calculus for Identifying Conditional Path-Specific Effects", Proceedings of the Twenty-Second International Conference on Artificial Intelligence and Statistics. URL: https://arxiv.org/pdf/1903.03662.pdf</p>
 </body>
