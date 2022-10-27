@@ -5,12 +5,12 @@
 
 <p><b>Context</b>: In the 2020 Major League Baseball Playoffs (which took place after a season only about 37% the usual length and without spectators), Tampa Bay Rays rookie <a href="https://www.mlb.com/player/randy-arozarena-668227">Randy Arozarena</a> became somewhat of a character with his antics and also had one of the best postseason performances of all time, hitting 10 home runs as his team made the World Series (which they ultimately lost to the Dodgers). The question is this: <i>Would this still be true if there were no pandemic?</i> </p>
 
-<p><b>Identification</b>: I am reasonably assuming exchangeability (changing the pandemic is the same as the pandemic never existing) and SUTVA (we can figure out what happens in each step of our proverbial DAG). Positivity is also assumed as “anything <i>could</i> happen.” For instance, there is an exceptionally low probability that if the pandemic never happened, someone who ultimately died from COVID would have created an artificial meteor that would have struck Globe Life Field during Game 3 of the world series and killed everyone… but that probability is not zero. This means E[Y(a)] = E[Y|A=a], so retroactive changes are allowed.</p>
+<p><b>Identification</b>: I am reasonably assuming exchangeability (changing the pandemic is the same as the pandemic never existing) and SUTVA (we can figure out what happens in each step of our proverbial DAG). Positivity is also assumed as “anything <i>could</i> happen.” For instance, there is an exceptionally low probability that if the pandemic never happened, someone who ultimately died from COVID would have created an artificial meteor that would have struck Globe Life Field during Game 3 of the World Series and killed everyone… but that probability is not zero. This means E[Y(a)] = E[Y|A=a], so retroactive changes are allowed.</p>
 
-<p>Let <i>A</i> be the binary random variable "The COVID-19 pandemic happened." Let <i>a</i> be the intervened value of <i>A</i> -- 1 if the pandemic occurs and 0 if it does not. Likewise, let <i>B</i> be the random variable identifying the level of preventative measures leveled to guard against the spread of COVID. There are multiple possible values for B as we could have started earlier, locked down more or less stringently, or let the disease flow unimpeded. For the purposes ot this page we will assume there are six possible values of B (integers 0--5), and let <i>b</i> be the intervening value of <i>B</i>. Let <i>R</i> be the binary random variable “Randy Arozarena is a well-known figure.” By nature, this is an average treatment effect. We are, for one, looking at E[R(a=0)-R(a=1)]. We know E[R(a=1)] = 1, so this is equivalent to finding E[R(a=0)], as well as other values of E[R(a,b)].</p>
+<p>Let <b>A</b> be the binary random variable "The COVID-19 pandemic happened." Let <i>a</i> be the intervened value of <b>A</b> -- 1 if the pandemic occurs and 0 if it does not. Likewise, let <b>B</b> be the random variable identifying the level of preventative measures leveled to guard against the spread of COVID. There are multiple possible values for B as we could have started earlier, locked down more or less stringently, or let the disease flow unimpeded. For the purposes ot this page we will assume there are six possible values of B (given by integers 0-5), and let <i>b</i> be the intervening value of <i>B</i>. Let <b>R</b> be the binary random variable “Randy Arozarena is a well-known figure.” By nature, this is an average treatment effect. We are, for one, looking at E[<b>R</b>(<i>a</i> =0)-<b>R</b>(<i>a</i>=1)]. We know E[<b>R</b>(<i>a</i> =1)] = 1, so this is equivalent to finding E[<b>R</b>(<i>a</i> =0)], as well as other values of E[<b>R</b>(<i>a</i> ,<i>b</i>)].</p>
 
 
-<p>Note that <i>A</i> affect <i>B</i>, so <i>B</i> is a mediator. Indeed, the crux of the project is looking at mediating effects. Obviously, there are a great number of additional mediating factors. In this problem alone, they include</p>
+<p>Note that <b>A</b> affect <i>B</i>, so <i>B</i> is technically a mediator. Indeed, the crux of the project is looking at mediating effects. Obviously, there are a great number of additional mediating factors. In this problem alone, they include</p>
 <ol type="1">
 <li>The degree of interest in professional baseball in 2020</li>
 <li>The number of people in attendance at Major League Baseball games in 2020</li>
@@ -27,30 +27,29 @@
 
 <p>Each of these mediating random variables has its own probability distribution. To find them we draw a causal graph, which will take the form of a DAG. This may require tweaking some of the mediators so we don’t have any cycles -- if this is impossible I will combine them into a single composite mediator. It will look like this:</p>
 
-<img src="itemized graph 10123.jpg" alt = "<== A rough image of what the SWIG looks like. M1 through M7 are the mediators listed above, in that order." width="94" height="186">
+<img src="itemized graph 10123.jpg" alt = "<== A rough image of what the SWIG looks like. M1 through M7 are the mediators listed above, in that order." width="144" height="288">
 
 <p>We will also assume distributions are Markov-Compatible -- we can consider only the direct linkages to a vertex of our graph. </p>
 
-<p>We will be using SWIGs as our primary tool. However, the initial variables of <b>A</b> and <b>B</b>  are the only ones we will intervene on. Thus our mediators take forms like M<sub>4</sub>(a,b).</p>
+<p>We will be using SWIGs as our primary tool. However, the initial variables of <b>A</b> and <b>B</b>  are the only ones we will intervene on. Thus our mediators take forms like M<sub>4</sub>(<i>a</i> ,<i>b</i>).</p>
 
 <p>Probably the biggest question is whether all of these mediators are d-separated and thus independent. They typically will be as connections through A and B are forks, and connections through R are colliders.</p>
 
-<p>We therefore seek E[R(a,b)] for all values of a and b.</p>
 
 <p>So, in summary, here’s the formal proof idea.</p>
 
 <ol type="1">
-<li>Find all possible reasonable mediators (limit to around 13) between A, B, and R. Acknowledge that they may come in multiple layers (that is, they may not go A → M → R or A → B → M → R directly).</li>
+<li>Find all possible reasonable mediators (limit to around 13) between A, B, and R. Acknowledge that they may come in multiple layers (that is, they may not go <b>A</b> → <b>M</b> → <b>R</b> or <b>A</b> → <b>B</b> → <b>M</b> → <b>R</b> directly).</li>
 <li>Check that there are no loops. If there are, combine the mediators as needed. This will show that the mediators still form a directed acyclic graph. That being said, this is still a moderately simplified discussion.</li>
-<li>See if the mediators are all d-separated from each other with respect to A and B. Acknowledge that some may not be, even in the same “level” -- everything is connected in the world?</li>
-<li>Intervene on A and B and describe the possible values for a and b. A is binary, B will have a small number of values (but greater than 2)</li>
-<li>Acknowledge that E[R(a,b)] is our goal -- the probability that Randy Arozarena would be as well-known as he currently is in any of our pandemic scenarios.</li>
+<li>See if the mediators are all d-separated from each other with respect to <b>A</b> and <b>B</b> . Acknowledge that some may not be, even in the same “level” -- everything is connected in the world?</li>
+<li>Intervene on <b>A</b> and <b>B</b>  and describe the possible values for a and b. <b>A</b> is binary; <b>B</b>  will have a small number of values (but greater than 2)</li>
+<li>Acknowledge that E[<b>R</b>(<i>a</i> ,<i>b</i>)] is our goal -- the probability that Randy Arozarena would be as well-known as he currently is in any of our pandemic scenarios.</li>
 <li>Create a SWIG. This assumes there is a DAG (or a series of DAGs) with SUTVA and exchangeability.</li>
-<li>Use the methods of po-calculus to create a new formula for E[R(a,b)], which will be substantially more complicated but more directly provable (notably, all the conditions are satisfied with A=A and B=B, and Rule 2 allows us to only consider one intervening variable at a time).</li>
-<li>Use frontdoor adjustment to act on the mediators, conditional on them descending directly from B (the pandemic measures) and not A (the pandemic itself); this confirms that the frontdoor criteria (spefifically the lack of backdoor paths to B, via A) are satisfied. This allows us to consider the expectation E[R(b)] as one involving our set of mediators.</li>
-<li>Do this again but for A, treating B as a mediator now. (We cannot use backdoor adjustment as virtually everything is a descendant of A and/or B).</li>
+<li>Use the methods of po-calculus to create a new formula for E[<b>R</b>(<i>a</i> ,<i>b</i>)], which will be substantially more complicated but more directly provable (notably, all the conditions are satisfied with A=<b>A</b> and B=<b>B</b>, and Rule 2 allows us to only consider one intervening variable at a time).</li>
+<li>Use frontdoor adjustment to act on the mediators, conditional on them descending directly from <b>B</b>  (the pandemic measures) and not <b>A</b> (the pandemic itself); this confirms that the frontdoor criteria (spefifically the lack of backdoor paths to <b>B</b> , via <b>A</b> ) are satisfied. This allows us to consider the expectation E[<b>R</b>(<i>b</i>)] as one involving our set of mediators.</li>
+<li>Do this again but for <b>A</b>, treating <b>B</b>  as a mediator now. (We cannot use backdoor adjustment as virtually everything is a descendant of <b>A</b> and/or <b>B</b>).</li>
 <li>This reduces our expectation to a complex of expectations involving mediators. Each of these should be only one or two steps rather than a full web, and some quick thinking or guided research will help find these expectations.</li>
-<li>Plug everything back in and get (hopefully) a numerical answer.</li>
+<li>Plug everything back in and get (hopefully) a numerical answer for E[<b>R</b>(<i>a</i> ,<i>b</i>)] for any viable choices of a and b.</li>
 </ol>
 <p>N.B. This type of project could extend beyond this semester and will likely be applicable to the other 22 problems listed on thewebsite. This is a “butterfly effect” situation that may be cleanly solved using the methods of Math 888 and could also be used to plan for future pandemics (perhaps using a different final outcome than the stardom of a baseball player).</p>
 
