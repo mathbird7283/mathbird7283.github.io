@@ -7,10 +7,10 @@
 
 <p><b>Assumptions</b>: I am reasonably assuming exchangeability (changing the pandemic is the same as the pandemic never existing) and SUTVA (we can figure out what happens in each step of our proverbial DAG). Positivity is also assumed as “anything <i>could</i> happen.” For instance, there is an exceptionally low probability that if the pandemic never happened, someone who ultimately died from COVID would have created an artificial meteor that would have struck Globe Life Field during Game 3 of the World Series and killed everyone… but that probability is not zero. This means E[Y(a)] = E[Y|A=a], so retroactive changes are allowed.</p>
 
-<p><b>Identification</b>: Let <b>A</b> be the binary random variable "The COVID-19 pandemic happened." Let <i>a</i> be the intervened value of <b>A</b> -- 1 if the pandemic occurs and 0 if it does not. Likewise, let <b>B</b> be the random variable identifying the level of preventative measures used to guard against the spread of COVID. There are multiple possible values for B as we could have started earlier, locked down more or less stringently, or let the disease flow unimpeded. For the purposes of this page we will assume there are six possible values of B (given by integers 0-5), each representing a specific set of measures. Next, let <i>b</i> be the intervening value of <i>B</i>. Let <b>R</b> be the binary random variable “Randy Arozarena is a well-known figure.” By nature, this is an average treatment effect. We are, for one, looking at E[<b>R</b>(<i>a</i> =0)-<b>R</b>(<i>a</i>=1)]. We know E[<b>R</b>(<i>a</i> =1)] = 1, so this is equivalent to finding E[<b>R</b>(<i>a</i> =0)], as well as other values of E[<b>R</b>(<i>a</i> ,<i>b</i>)].</p>
+<p><b>Identification</b>: Let <b>A</b> be the binary random variable "The COVID-19 pandemic happened." Let <i>a</i> be the intervened value of <b>A</b> -- 1 if the pandemic occurs and 0 if it does not. Likewise, let <b>B</b> be the random variable identifying the level of preventative measures used to guard against the spread of COVID. There are multiple possible values for B as we could have started earlier, locked down more or less stringently, or let the disease flow unimpeded. For the purposes of this page we will assume there are six possible values of B (given by integers 0-5), each representing a specific set of measures. Next, let <i>b</i> be the intervening value of <b>B</b>. Let <b>R</b> be the binary random variable “Randy Arozarena is a well-known figure.” By nature, this is an average treatment effect. We are, for one, looking at E[<b>R</b>(<i>a</i> =0)-<b>R</b>(<i>a</i>=1)]. We know E[<b>R</b>(<i>a</i> =1)] = 1, so this is equivalent to finding E[<b>R</b>(<i>a</i> =0)], as well as other values of E[<b>R</b>(<i>a</i> ,<i>b</i>)].</p>
 
 
-<p><b>Mediators</b>: Note that <b>A</b> affect <i>B</i>, so <i>B</i> is technically a mediator. Indeed, the crux of the project is looking at mediating effects. Obviously, there are a great number of additional factors. For this question alone, they include:</p>
+<p><b>Mediators</b>: Note that <b>A</b> affect <b>B</b>, so <b>B</b> is technically a mediator. Indeed, the crux of the project is looking at mediating effects. Obviously, there are a great number of additional factors. For this question alone, they include:</p>
 <ul>
 <li>The degree of interest in professional baseball in 2020</li>
 <li>The number of people in attendance at Major League Baseball games in 2020</li>
@@ -36,7 +36,7 @@
 <p>Probably the biggest question is whether all of these mediators are d-separated and thus independent. They typically will be as connections through <b>A</b>b> and <b>B</b> are forks, and connections through <b>R</b> are colliders. There are no other major considerations, chiefly because the variables on which we are intervening have no ancestors.</p>
 
 
-<p>So, in summary, here’s the formal proof structure.</p>
+<p><b>Proof Steps</b>: So, in summary, here’s the formal proof structure.</p>
 
 <ol type="1">
 <li>Find all possible reasonable mediators (limit to around 12) between <b>A</b>, <b>B</b>, and <b>R</b>. Acknowledge that they may come in multiple layers (that is, they may not go <b>A</b> → <b>M</b> → <b>R</b> or <b>A</b> → <b>B</b> → <b>M</b> → <b>R</b> directly).</li>
