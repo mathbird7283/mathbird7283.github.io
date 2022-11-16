@@ -66,7 +66,7 @@ From here we clearly see that independent of A, E[G(a,4)]=0.  For the remaining 
 
 The data sets used in this algorithm are largely theoretical, as this is an intervention on the past. However, two notable sources of data make their appearances when we investigate the propensity scores of A and B relative to D, E, and G.
 
-These are the Nielsen ratings of the Super Bowl, World Series, and NBA Finals (taken from <a href="https://www.sportsmediawatch.com">www.sportsmediawatch.com</a>), and a variety of win-loss records and success patterns of Major League Baseball teams over the last six season (taken from <a href="https://baseball-reference.com/">www.baseball-reference.com</a>).
+These are the Nielsen ratings of the Super Bowl, World Series, and NBA Finals (taken from <a href="https://www.sportsmediawatch.com">www.sportsmediawatch.com</a>, Nov 13 2022), and a variety of win-loss records and success patterns of Major League Baseball teams over the last six season (taken from <a href="https://baseball-reference.com/">www.baseball-reference.com</a>, Nov 15 2022).
 
 The former data are used to calculate E[D(a,b)], which is estimated by E<sub>54</sub>[D(a,b)] where the 54 data points are the the years from 1969 to 2022. As we're dealing with discrete variables that take relatively few values, we may be able to model our intermediate variables (such as D) using outcome regression -- each variable can likely be modeled as c<sub>0</sub>+c<sub>1</sub>a+c<sub>2</sub>b+c<sub>3</sub>ab. Preferably, c<sub>3</sub>=0 as linear regression is preferable.
 
@@ -80,7 +80,7 @@ One concern, however, is that this dataset is somewhat incomplete -- there's nev
 
 <p>This matters to baseball (and sports in general) management, as it can show exactly how a player's career would, with highest probability, have played out if a significant interruption (e.g. a pandemic or World War II) had or had not happened. For example, merchandisers may be able to deduce if such an interruption will e or decrease the player's popularity, and thus know how many jerseys to manufacture for an upcoming season. This is fairly narrow but useful!</p>
 
-<h3> <FONT COLOR = "blue"> Applying this algorithm! (the code used for this is included in my GitHub page)</FONT></h3>
+<h3> <FONT COLOR = "blue"> Applying this algorithm! </FONT></h3>
 I ran an algorithm to estimate the number of home runs Randy Arozarena would have hit during the postseason in a regular 162-game 2020 season. The algorithm worked the following way:
 <ul>
 <li>Extrapolate each team's 60-game record to 162 games. This is done by adding four times the record for each team's last 17 games (leading to 128 total games), along with 17 wins and 17 losses (as there will be some regression to the mean). For instance, the Seattle Mariners finished 27-33, and 8-9 in their last 17. Thus, in 162 games, they would be expected to win 27 + 4 * 8 + 17 = 76 games (and lose 86).</li>
