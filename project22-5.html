@@ -3,7 +3,7 @@
 <script>
 MathJax = {
 tex: {
-inlineMath: [['$', '$'], ['\(', '\)']]
+inlineMath: [['$', '$']]
 }
 };
 </script>
@@ -29,7 +29,7 @@ src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
 
 <h3> <FONT COLOR = "blue">What I'm Doing </FONT> </h3>
 
-<p>In this estimation step, I am working with a substantial number of assumptions. Most notably, <i>I am not accounting for every possible factor</i>, or my SWIG would become unmanageably large. I also reiterate that I am assuming defined potential outcomes and consistency here.</p>
+<p>In this estimation step, I am working with a substantial number of assumptions. Most notably, <i>I am not accounting for every possible factor</i>, or my SWIG would become unmanageably large. I also reiterate that I am assuming well defined potential outcomes and consistency here.</p>
 
 <p>The primary technique I am using will be inverse probability weighing (which, you may recall, is equivalent to direct standardization if we are working with only discrete variables). Observe the following:</p>
 
@@ -48,7 +48,7 @@ $$E(\frac{1_{D=d}C}{P(D=d|A,B)})$$ so the key is finding propensity scores for D
 <p>Additionally, In each year, we will consider the observed values of A and B as follows -- setting A to 1 if there was a major life disruption during the year (this, of course, is relative) and B to 1 if there were significant interventions on daily life as a result of it:</p>
 <ol>
 <li>Obviously, what counts as a "major life disruption" is subjective, and I was not alivee during the first four of these, but I decided to set A=1 in 1969 (Hong Kong Flu), 1974 (End of Vietnam War), 1981 (AIDS epidemic, MLB strike), 1989 (Tiananmen Square, Fall of the Berlin Wall), 1991 (Breakup of the Soviet Union), 1999 (Y2K Bug), 2001 (September 11 Attacks), 2009 (Swine Flu), 2020 and 2021 (COVID-19 Pandemic), and A=0 in all other years.</li>
-<li>B=1 in 1981 (due to certain limitations caused by AIDS) and 2001 (due to security concerns). In 2020 B is equal to 2, as many things were cancelled or disallowed for the first time since 1945 (and the given data only goes back to 1968).</li>
+<li>B=1 in 1981 (due to certain fear of AIDS as well as the baseball strike) and 2001 (due to 9/11 and security concerns). In 2020 B is equal to 2, as many things were cancelled or disallowed for the first time since 1945 (and the given data only goes back to 1968).</li>
 </ol>
 
 <p>We will consider the variables E and G simultaneously by considering the number of postseason games the Tampa Bay Rays would have played if the pandemic not occurred, or if intervention had been different. This depends entirely on B. I am assuming the following.
@@ -80,7 +80,7 @@ One concern, however, is that this dataset is somewhat incomplete -- there's nev
 
 <p>This matters to baseball (and sports in general) management, as it can show exactly how a player's career would, with highest probability, have played out if a significant interruption (e.g. a pandemic or World War II) had or had not happened. For example, merchandisers may be able to deduce if such an interruption will e or decrease the player's popularity, and thus know how many jerseys to manufacture for an upcoming season. This is fairly narrow but useful!</p>
 
-<h3> <FONT COLOR = "blue"> Applying this algorithm! </FONT></h3>
+<h3> <FONT COLOR = "blue"> Applying this algorithm! (the code used for this is included in my GitHub page)</FONT></h3>
 I ran an algorithm to estimate the number of home runs Randy Arozarena would have hit during the postseason in a regular 162-game 2020 season. The algorithm worked the following way:
 <ul>
 <li>Extrapolate each team's 60-game record to 162 games. This is done by adding four times the record for each team's last 17 games (leading to 128 total games), along with 17 wins and 17 losses (as there will be some regression to the mean). For instance, the Seattle Mariners finished 27-33, and 8-9 in their last 17. Thus, in 162 games, they would be expected to win 27 + 4 * 8 + 17 = 76 games (and lose 86).</li>
