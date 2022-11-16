@@ -22,7 +22,7 @@ src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
 <li>B represents the degree of intervention by the government (0 = no intervention, 1 = minimal intervention, 2 = equivalent to USA response, 3 = extended stay-at-home-order, 4 = strictly enforced lockdown)</li>
 <li>C represents whether Randy Arozarena is a household name, to at least 75% of the extent that he is now. 1 if yes, 0 if no.</li>
 <li>D represents the public's interest in professional sports. D=0 if it's closer to the 2020 level of interest, which was somewhat down from 2019, while D=1 if it's closer to the 2019 level of interest.</li>
-<li>E represents which combination of teams played in the 2020 World Series. It takes on one of 225 possible values, identified as six-digit numbers via area codes (e.g. a World Series between the Yankees and the Cardinals would be E=212314).</li>
+<li>E represents which combination of teams played in the 2020 World Series. It takes on one of 225 possible numerical values, possibly identified as six-digit numbers via area codes (e.g. a World Series between the Yankees and the Cardinals would be E=212314).</li>
 <li>F represents how social Americans are in 2020, on a continuous scale between 0 and 1.</li>
 <li>G represents the number of home runs Randy Arozarena hit during the 2020 MLB postseason</li>
 </ul>
@@ -37,16 +37,17 @@ src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
 <li> A and B (collectively) satisfy backdoor criteria relative to (D,C), (E,C), (F,C), and (G,C) .</li>
 <li>We assume the potential outcomes, e.g. C(g), are well-defined -- this is what we are looking to estimate.</li>
 <li>Our causal estimand -- what we seek to find -- is E[C(a,b)] for various values of a and b, which are the experimental values of A and B. This can be found using inverse probability weighing; specifically by finding E[D(a,b)], for example, and then finding E[C|D=d].</li>
-<li>Note also that E[C(a,b)] is, by inverse probability weighing, equal to E((1<sub>D=d</sub>C)(P(D=d)|A,B)<sup>-1</sup>), so the key is finding propensity scores for D and other variables.
+<li>Note also that E[C(a,b)] is, by inverse probability weighing, equal to 
+$$E(\frac{1_{D=d}C}{P(D=d|A,B)})$$ so the key is finding propensity scores for D and other variables.
 </ol>
 
 <h3> <FONT COLOR = "blue">How to find the expectations </FONT></h3>
-<p> Here is an example we use a data set to estimate these values. To find E[D] -- i.e. the general population's degree of interest in professional sports - we consider the data set of television ratings for the World Series and the NBA Finals (Game 3 for both) as well as the Super Bowl. Begin with d=0 and add 1/3 if the rating of the game in year n is higher than the mean of the two adjacent ratings (years n-1 and n+1), for each of the three sports, and then round to the nearest integer. Alternatively, we are picking the "best two out of three" in performance relative to the years before and after (using both sides is important as ratings for MLB and NBA games have steadily fallen over several decades). $\frac{2}{3}$. $$\frac{3}{4}$$. \mathbb{R}
+<p> Here is an example we use a data set to estimate these values. To find E[D] -- i.e. the general population's degree of interest in professional sports - we consider the data set of television ratings for the World Series and the NBA Finals (Game 3 for both) as well as the Super Bowl. Begin with d=0 and add 1/3 if the rating of the game in year n is higher than the mean of the two adjacent ratings (years n-1 and n+1), for each of the three sports, and then round to the nearest integer. Alternatively, we are picking the "best two out of three" in performance relative to the years before and after (using both sides is important as ratings for MLB and NBA games have steadily fallen over several decades). 
 </p>
 
 <p>Additionally, In each year, we will consider the observed values of A and B as follows -- setting A to 1 if there was a major life disruption during the year (this, of course, is relative) and B to 1 if there were significant interventions on daily life as a result of it:</p>
 <ol>
-<li>A=1 in 1969 (Hong Kong Flu), 1974 (End of Vietnam War), 1981 (AIDS epidemic, MLB strike), 1989 (Tiananmen Square, Fall of the Berlin Wall), 1991 (Breakup of the Soviet Union), 1999 (Y2K Bug), 2001 (September 11 Attacks), 2009 (Swine Flu), 2020 and 2021 (COVID-19 Pandemic)</li>
+<li>Obviously, what counts as a "major life disruption" is subjective, and I was not alivee during the first four of these, but I decided to set A=1 in 1969 (Hong Kong Flu), 1974 (End of Vietnam War), 1981 (AIDS epidemic, MLB strike), 1989 (Tiananmen Square, Fall of the Berlin Wall), 1991 (Breakup of the Soviet Union), 1999 (Y2K Bug), 2001 (September 11 Attacks), 2009 (Swine Flu), 2020 and 2021 (COVID-19 Pandemic), and A=0 in all other years.</li>
 <li>B=1 in 1981 (due to certain limitations caused by AIDS) and 2001 (due to security concerns). In 2020 B is equal to 2, as many things were cancelled or disallowed for the first time since 1945 (and the given data only goes back to 1968).</li>
 </ol>
 
