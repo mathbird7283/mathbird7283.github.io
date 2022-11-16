@@ -16,7 +16,7 @@
 <li>G represents the number of home runs Randy Arozarena hit during the 2020 MLB postseason</li>
 </ul>
 
-<h3> What I'm Doing </h3>
+<h3> <FONT COLOR = "blue">What I'm Doing </FONT> </h3>
 
 <p>In this estimation step, I am working with a substantial number of assumptions. Most notably, <i>I am not accounting for every possible factor</i>, or my SWIG would become unmanageably large. I also reiterate that I am assuming defined potential outcomes and consistency here.</p>
 
@@ -26,10 +26,10 @@
 <li> A and B (collectively) satisfy backdoor criteria relative to (D,C), (E,C), (F,C), and (G,C) .</li>
 <li>We assume the potential outcomes, e.g. C(g), are well-defined -- this is what we are looking to estimate.</li>
 <li>Our causal estimand -- what we seek to find -- is E[C(a,b)] for various values of a and b, which are the experimental values of A and B. This can be found using inverse probability weighing; specifically by finding E[D(a,b)], for example, and then finding E[C|D=d].</li>
-<li>Note also that E[C(a,b)] is, by inverse probability weighing, equal to E((1_{D=d}C)(P(D=d)|A,B)^(-1)), so the key is finding propensity scores for D and other variables.
+<li>Note also that E[C(a,b)] is, by inverse probability weighing, equal to E((1<sub>D=d</sub>C)(P(D=d)|A,B)<sup>-1</sup>), so the key is finding propensity scores for D and other variables.
 </ol>
 
-<h3> How to find the expectations </h3>
+<h3> <FONT COLOR = "blue">How to find the expectations </FONT></h3>
 <p> Here is an example we use a data set to estimate these values. To find E[D] -- i.e. the general population's degree of interest in professional sports - we consider the data set of television ratings for the World Series and the NBA Finals (Game 3 for both) as well as the Super Bowl. Begin with d=0 and add 1/3 if the rating of the game in year n is higher than the mean of the two adjacent ratings (years n-1 and n+1), for each of the three sports, and then round to the nearest integer. Alternatively, we are picking the "best two out of three" in performance relative to the years before and after (using both sides is important as ratings for MLB and NBA games have steadily fallen over several decades).
 </p>
 
@@ -50,35 +50,35 @@
 
 From here we clearly see that independent of A, E[G(a,4)]=0.  For the remaining cases, we use inverse probability weighing as above.
 
-<p>What is the Data Being Used?</p>
+<h3> <FONT COLOR = "blue">What is the Data Being Used? </FONT></h3>
 
 The data sets used in this algorithm are largely theoretical, as this is an intervention on the past. However, two notable sources of data make their appearances when we investigate the propensity scores of A and B relative to D, E, and G.
 
 These are the Nielsen ratings of the Super Bowl, World Series, and NBA Finals (taken from <a href="https://www.sportsmediawatch.com">www.sportsmediawatch.com</a>), and a variety of win-loss records and success patterns of Major League Baseball teams over the last six season (taken from <a href="https://baseball-reference.com/">www.baseball-reference.com</a>).
 
-The former data are used to calculate E[D(a,b)], which is estimated by E<sub>54</sub>[D(a,b)] where the 54 data poiints are the the years from 1969 to 2022. As we're dealing with discrete variables that take relatively few values, we may be able to model our intermediate variables (such as D) using outcome regression -- each variable can likely be modeled as c<sub>0</sub>+c<sub>1</sub>a+c<sub>2</sub>b+c<sub>3</sub>ab). Preferably, c<sub>3</sub>=0 as linear regression is preferable.
+The former data are used to calculate E[D(a,b)], which is estimated by E<sub>54</sub>[D(a,b)] where the 54 data poiints are the the years from 1969 to 2022. As we're dealing with discrete variables that take relatively few values, we may be able to model our intermediate variables (such as D) using outcome regression -- each variable can likely be modeled as c<sub>0</sub>+c<sub>1</sub>a+c<sub>2</sub>b+c<sub>3</sub>ab. Preferably, c<sub>3</sub>=0 as linear regression is preferable.
 
 One concern, however, is that this dataset is somewhat incomplete -- there's never been a value of b greater than 1 since 1945.
 
-<h3> Results of the Algorithm</h3>
+<h3>  <FONT COLOR = "blue"> Results of the Algorithm </FONT> </h3>
 
 <p>This is meant to look at a "butterfly effect" scenario, rather than planning for future events. That said, it works efficiently -- the hardest part is finding the probabilities in the postseason analysis, which is O(n^2+t) where n is the number of teams in Major League Baseball, and t is the number of years in our dataset.</p>
 
-<h3> Why do we care? </h3>
+<h3>  <FONT COLOR = "blue"> Why do we care? </FONT></h3>
 
 <p>This matters to baseball (and sports in general) management, as it can show exactly how a player's career would, with highest probability, have played out if a significant interruption (e.g. a pandemic or World War II) had or had not happened. For example, merchandisers may be able to deduce if such an interruption will increas or decrease the player's popularity, and thus know how many jerseys to manufacture for an upcoming season. This is fairly narrow but useful!</p>
 
-<p> Applying this algorithm!</p>
+<h3> <FONT COLOR = "blue"> Applying this algorithm! </FONT></h3>
 I ran an algorithm to estimate the numebr of home runs Randy Arozarena would have hit during the postseason in a regular 162-game 2020 season. The algorithm worked the following way:
 <ul>
 <li>Extrapolate each team's 60-game record to 162 games. This is done by adding four times the record for each team's last 17 games (leading to 128 total games), along with 17 wins and 17 losses (as there will be some regression to the mean). For instance, the Seattle Mariners finished 27-33, and 8-9 in their last 17. Thus, in 162 games, they would be expected to win 27 + 4 * 8 + 17 = 76 games (and lose 86).</li>
 <li>Identify the postseason bracket using regular (as of 2019) playoff rules.</li>
-<li>Check the record of each postseason term versus each other postseason team in 2020 postseason -- failing that, in 2020 -- failing that, in the last season they played each other. This does involve a rather large sample size (8741 games, including playoffs, from 2017-2020) but it's manageable. Put these records in a 10-by-10 numpy array. </li>
+<li>Check the record of each postseason term versus each other postseason team in 2020 postseason -- failing that, in the 2020 regular season-- failing that, in the last season they played each other. This does involve a rather large sample size (8741 games, including playoffs, from 2017-2020) but it's manageable. Put these records in a 10-by-10 numpy array. </li>
 <li> Using iterated expectation and probability modeling to find the expected number of games the Rays played in the "pandemicless" 2020 postseason and the probability of making or winning the World Series.</li>
 <li>Results: The Rays had a 8.66% chance to win the World Series and a 17.69% chance to win the AL pennant. They can be expected to play approximately 9.02 postseason games, of which they would win 4.50 and lose 4.52.</li>
 <li> What did happen: The Rays won 11 postseason games and lost 9. Randy hit 5 home runs in games they won and 5 home runs in games they lost. Hence in a "normal postseason" he would be expected to his 4.557 home runs at current rates. This is likely not enough to cause as much public interest.</li>
 
 </ul>
 
-For additional background on the methods used here consult the online textbook "What If" by Hernan and Robins, available <a href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">here</a>.
+For additional background on the methods used here consult the online textbook "What If" by Hernan and Robins (particularly in Chapter 15), available <a href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">here</a>.
 </body>
