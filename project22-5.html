@@ -9,7 +9,7 @@
 <ul>
 <li>A is the variable that indicates whether the pandemic occurred (1 if it did, 0 if it did not).</li>
 <li>B represents the degree of intervention by the government (0 = no intervention, 1 = minimal intervention, 2 = equivalent to USA response, 3 = extended stay-at-home-order, 4 = strictly enforced lockdown)</li>
-<li>C represents whether Randy Arozarena is a houseehold name, to at least 75% of the extent that he is now. 1 if yes, 0 if no.</li>
+<li>C represents whether Randy Arozarena is a household name, to at least 75% of the extent that he is now. 1 if yes, 0 if no.</li>
 <li>D represents the public's interest in professional sports. D=0 if it's closer to the 2020 level of interest, which was somewhat down from 2019, while D=1 if it's closer to the 2019 level of interest.</li>
 <li>E represents which combination of teams played in the 2020 World Series. It takes on one of 225 possible values, identified as six-digit numbers via area codes (e.g. a World Series between the Yankees and the Cardinals would be E=212314).</li>
 <li>F represents how social Americans are in 2020, on a continuous scale between 0 and 1.</li>
@@ -33,9 +33,9 @@
 <p> Here is an example we use a data set to estimate these values. To find E[D] -- i.e. the general population's degree of interest in professional sports - we consider the data set of television ratings for the World Series and the NBA Finals (Game 3 for both) as well as the Super Bowl. Begin with d=0 and add 1/3 if the rating of the game in year n is higher than the mean of the two adjacent ratings (years n-1 and n+1), for each of the three sports, and then round to the nearest integer. Alternatively, we are picking the "best two out of three" in performance relative to the years before and after (using both sides is important as ratings for MLB and NBA games have steadily fallen over several decades).
 </p>
 
-<p>Additionally, In each year, we will consider the observed values of A and B as follows -- setting A to 1 if there was a major life distruption during the year (this, of course, is relative) and B to 1 if there were significant interventions on daily life as a result of it:</p>
+<p>Additionally, In each year, we will consider the observed values of A and B as follows -- setting A to 1 if there was a major life disruption during the year (this, of course, is relative) and B to 1 if there were significant interventions on daily life as a result of it:</p>
 <ol>
-<li>A=1 in 1969 (Hong Kong Flu), 1974 (End of Vietnam War), 1981 (AIDS episdemic, MLB strike), 1989 (Tiananmen Square, Fall of the Berlin Wall), 1991 (Breakup of the Soviet Union), 1999 (Y2K Bug), 2001 (September 11 Attacks), 2009 (Swine Flu), 2020 and 2021 (COVID-19 Pandemic)</li>
+<li>A=1 in 1969 (Hong Kong Flu), 1974 (End of Vietnam War), 1981 (AIDS epidemic, MLB strike), 1989 (Tiananmen Square, Fall of the Berlin Wall), 1991 (Breakup of the Soviet Union), 1999 (Y2K Bug), 2001 (September 11 Attacks), 2009 (Swine Flu), 2020 and 2021 (COVID-19 Pandemic)</li>
 <li>B=1 in 1981 (due to certain limitations caused by AIDS) and 2001 (due to security concerns). In 2020 B is equal to 2, as many things were cancelled or disallowed for the first time since 1945 (and the given data only goes back to 1968).</li>
 </ol>
 
@@ -56,7 +56,7 @@ The data sets used in this algorithm are largely theoretical, as this is an inte
 
 These are the Nielsen ratings of the Super Bowl, World Series, and NBA Finals (taken from <a href="https://www.sportsmediawatch.com">www.sportsmediawatch.com</a>), and a variety of win-loss records and success patterns of Major League Baseball teams over the last six season (taken from <a href="https://baseball-reference.com/">www.baseball-reference.com</a>).
 
-The former data are used to calculate E[D(a,b)], which is estimated by E<sub>54</sub>[D(a,b)] where the 54 data poiints are the the years from 1969 to 2022. As we're dealing with discrete variables that take relatively few values, we may be able to model our intermediate variables (such as D) using outcome regression -- each variable can likely be modeled as c<sub>0</sub>+c<sub>1</sub>a+c<sub>2</sub>b+c<sub>3</sub>ab. Preferably, c<sub>3</sub>=0 as linear regression is preferable.
+The former data are used to calculate E[D(a,b)], which is estimated by E<sub>54</sub>[D(a,b)] where the 54 data points are the the years from 1969 to 2022. As we're dealing with discrete variables that take relatively few values, we may be able to model our intermediate variables (such as D) using outcome regression -- each variable can likely be modeled as c<sub>0</sub>+c<sub>1</sub>a+c<sub>2</sub>b+c<sub>3</sub>ab. Preferably, c<sub>3</sub>=0 as linear regression is preferable.
 
 One concern, however, is that this dataset is somewhat incomplete -- there's never been a value of b greater than 1 since 1945.
 
@@ -66,10 +66,10 @@ One concern, however, is that this dataset is somewhat incomplete -- there's nev
 
 <h3>  <FONT COLOR = "blue"> Why do we care? </FONT></h3>
 
-<p>This matters to baseball (and sports in general) management, as it can show exactly how a player's career would, with highest probability, have played out if a significant interruption (e.g. a pandemic or World War II) had or had not happened. For example, merchandisers may be able to deduce if such an interruption will increas or decrease the player's popularity, and thus know how many jerseys to manufacture for an upcoming season. This is fairly narrow but useful!</p>
+<p>This matters to baseball (and sports in general) management, as it can show exactly how a player's career would, with highest probability, have played out if a significant interruption (e.g. a pandemic or World War II) had or had not happened. For example, merchandisers may be able to deduce if such an interruption will e or decrease the player's popularity, and thus know how many jerseys to manufacture for an upcoming season. This is fairly narrow but useful!</p>
 
 <h3> <FONT COLOR = "blue"> Applying this algorithm! </FONT></h3>
-I ran an algorithm to estimate the numebr of home runs Randy Arozarena would have hit during the postseason in a regular 162-game 2020 season. The algorithm worked the following way:
+I ran an algorithm to estimate the number of home runs Randy Arozarena would have hit during the postseason in a regular 162-game 2020 season. The algorithm worked the following way:
 <ul>
 <li>Extrapolate each team's 60-game record to 162 games. This is done by adding four times the record for each team's last 17 games (leading to 128 total games), along with 17 wins and 17 losses (as there will be some regression to the mean). For instance, the Seattle Mariners finished 27-33, and 8-9 in their last 17. Thus, in 162 games, they would be expected to win 27 + 4 * 8 + 17 = 76 games (and lose 86).</li>
 <li>Identify the postseason bracket using regular (as of 2019) playoff rules.</li>
