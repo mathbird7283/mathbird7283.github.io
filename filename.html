@@ -38,7 +38,7 @@ $$E[F(b)| A=a] \ge E[F(b')| A=a]$$
 
 as long as b < b' and
 
-$$E[G(e)| A=a, B=b] \geE[G(e')| A=a, B=b]$$
+$$E[G(e)| A=a, B=b] \ge E[G(e')| A=a, B=b]$$
 
 as long as e>e'.
 
@@ -66,14 +66,14 @@ by Manski bounding. One could also add an <i>AB</i> term (this breaks the assump
 
 <p>
 
-The above relative risk is equal to E[C|B=2]/E[C|B=0]. We know the numerator is 1. What is <i>E[C|B=0]</i>? That is what we seek -- these allow us to interpret results rather than find them. It remains to be seen how exactly to find this expected value.
+The above relative risk is equal to $\frac{E[C|B=2]}{E[C|B=0]}$. We know the numerator is 1. What is <i>E[C|B=0]</i>? That is what we seek -- these allow us to interpret results rather than find them. It remains to be seen how exactly to find this expected value.
 
 </p>
 
 
 <h3> <FONT COLOR = "blue">Assumption Violation</FONT></h3>
 
-<p>There are a few things that could happen if an assumption is violated. If we change our assumption that <i>A</i> is changeable and stop intervening on it, it becomes an (instrumental) unmeasured confounder. This allows for Rosenbaum or Vanderweele analysis. However, the classic sensitivity analysis has limited use in this example as we are not typically able to come up with the requisite data -- this is a hypothetical situation! Indeed, due to the limitations of my data,<i>there is no year</i> (since 1989, where my data begins) where B is nonzero and <i>D</i> is zero other than 2020, so the relative risk cannot be calculated for all of the arrows. Also, the value of $RR_{BA}$ does not really make sense in this context, as despite the arrow from <i>A</i> to <i>B</i>, the interactions between them are beyond the scope of this project. </p>
+<p>There are a few things that could happen if an assumption is violated. If we change our assumption that <i>A</i> is changeable and stop intervening on it, it becomes an (instrumental) unmeasured confounder. This allows for Rosenbaum or Vanderweele analysis. However, the classic sensitivity analysis has limited use in this example as we are not typically able to come up with the requisite data -- this is a hypothetical situation! Indeed, due to the limitations of my data, <i>there is no year</i> (since 1989, where my data begins) where <i>B</i> is nonzero and <i>D</i> is zero other than 2020, so the relative risk cannot be calculated for all of the arrows. Also, the value of $RR_{BA}$ does not really make sense in this context, as despite the arrow from <i>A</i> to <i>B</i>, the interactions between them are beyond the scope of this project. </p>
 
 <p>There is also the possibility that there are relations in this SWIG that are not Markov compatible. However, if that is the case, we can rectify the problem by adding more arrows.</p>
 
