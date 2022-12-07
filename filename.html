@@ -14,11 +14,9 @@ src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
 
 This project, it must be said, has its limits. 
 
-It is very sensitive to the inclusion of other unmeasured confounders. We will consider a few cases.
-
 <h3> <FONT COLOR = "blue">Assumptions and how we manage them </FONT></h3>
 
-<p> There are not many assumptions we can break. One assumption I am making is that the 60-game season would extrapolate to a 162-game season in the way described previously. Perhaps one team would have gone on a 22-game winning streak (which, in the last six years of baseball, is not unprecedented), or the effects of losing players (or not) to Covid would have modified records. Without this assumption no analysis can be done.</p>
+<p> There are not many assumptions we can break. One assumption I am making is that the 60-game season would extrapolate to a 162-game season in the way described previously. Perhaps one team would have gone on a 22-game winning streak (which, in the last six years of baseball, is not unprecedented), or the effects of losing players (or not) to COVID would have modified records. Without this assumption no analysis can be done.</p>
 
 <p>Probably the biggest assumption I am making is the effect of <i>F</i> on <i>C</i>. My admittedly somewhat arbitrary criterion for <i>C</i> to equal 1 is if Randy is "At least 75% as much of a household name" as he would be otherwise. My best estimate is that if <i>F</i> were raised to 1 (indicating equivalent social interaction to 2019), then, all else being equal, <i>C</i> would have a 10 percent greater chance of equalling 1. The difference is fairly minimal due to the impact of the Internet.</p>
 
@@ -83,4 +81,5 @@ The above relative risk is equal to $\frac{E[C|B=2]}{E[C|B=0]}$. We know the num
 
 <p> If <i>B=0</i> then <i>D</i> would rise to about 0.25. Meanwhile <i>G</i> is expected to be about 4.5, by the results on the previous page. <i>F</i>, by assumption, would increase to about 0.1. And from these and these alone we can, assuming Markov Compatibility, develope a system to estimate <i>C</i>. One potential pitfall of this is that a good measure of <i>C</i> is social media followers -- however, this severely limits our temporal historical data points to since about 2015, as prior to this year, benchmarks would be different.</p>
 
+<p> For other examples of Manski bounding with instrumental confounders relating to daily life, consult Manski and Pepper's paper, "Monotone instrumental variables with an application to the returns to schooling." (1998) (available <a href="https://www.nber.org/system/files/working_papers/t0224/t0224.pdf">here</a>)
 </body>
