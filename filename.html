@@ -18,59 +18,59 @@ It is very sensitive to the inclusion of other unmeasured confounders. We will c
 
 <h3> <FONT COLOR = "blue">Assumptions and how we manage them </FONT></h3>
 
-<p> There are not many assumptions we can break. One assumption I am making is that the 60-game season would extrapolate to a 162-game season in the way described previously. Perhaps one team would have gone on a 22-game winning streak (which, in the last six years of baseball, is not unprecedented), or the effects of losing players (or not) to Covid would have modified records.</p>
+<p> There are not many assumptions we can break. One assumption I am making is that the 60-game season would extrapolate to a 162-game season in the way described previously. Perhaps one team would have gone on a 22-game winning streak (which, in the last six years of baseball, is not unprecedented), or the effects of losing players (or not) to Covid would have modified records. Without this assumption no analysis can be done.</p>
 
-<p>Probably the biggest assumption I am making is the effect of F on C. My criterion for C to equal 1 is if Randy is "At least 75% as much of a household name" as he would be otherwise. My best estimate is that if F were raised to 1 (indicating equivalent social interaction to 2019), then, all else being equal, C would have a 10 percent greater chance of equalling 1. The difference is fairly minimal due to the impact of the Internet.</p>
+<p>Probably the biggest assumption I am making is the effect of <i>F</i> on <i>C</i>. My admittedly somewhat arbitrary criterion for <i>C</i> to equal 1 is if Randy is "At least 75% as much of a household name" as he would be otherwise. My best estimate is that if <i>F</i> were raised to 1 (indicating equivalent social interaction to 2019), then, all else being equal, <i>C</i> would have a 10 percent greater chance of equalling 1. The difference is fairly minimal due to the impact of the Internet.</p>
 
-<p>Another assumption I am making is that D is linear in A and B (see below), and that when we take data points (e.g. television ratings over several years) they act independently. My method of comparing each year to the two adjacent ones circumvents the general decline in ratings.</p>
+<p>Another assumption I am making is that <i>D</i> is linear in <i>A</i> and <i>B</i> (see below), and that when we take data points (e.g. television ratings over several years) they act independently. My method of comparing each year to the two adjacent ones circumvents the general decline in ratings.</p>
 
 
 <h3> <FONT COLOR = "blue">Stategies and Alternatives</FONT></h3>
 
-<p>First, we consider that there are no specifically defined unmeasured confounding variables -- at least, <i>none that are connected to A</i>. This is because the exact cause of the pandemic remains unknown, and regardless of what it is, a hypothetical U would not have affected other variables independently -- i.e. it is an instrument variable, connected only to A. This limits the</p>
+<p>First, we consider that there are no specifically defined unmeasured confounding variables -- at least, <i>none that are connected to A</i>. This is because the exact cause of the pandemic remains unknown, and regardless of what it is, a hypothetical U would not have affected other variables independently -- i.e. it is an instrument variable, connected only to <i>A</i>. This limits the</p>
 
-<p>Despite the lack of a defined U, we can do Manski sensitivity analysis on our given SWIG. There are two arrows that I consider to be likely to be monotone. Specifically, those are B->F and D->C. The former is monotone because restrictions caused by pandemics will most definitely limit how social people are. The latter is monotone because more postseason games will obviously mean more home runs.</p>
+<p>Despite the lack of a defined U, we can do Manski sensitivity analysis on our given SWIG. There are two arrows that I consider to be likely to be monotone. Specifically, those are <i>B&rarr;F</i> and <i>D&larr;C</i>. The former is monotone because restrictions caused by pandemics will most definitely limit how social people are. The latter is monotone because more postseason games will obviously mean more home runs.</p>
 
 <p> Consequently,
 
 $$E[F(b)| A=a] \ge E[F(b')| A=a]$$
 
-as long as $$b<b'$$, and
+as long as b < b' and
 
 $$E[C(d)| A=a, B=b] >= E[C(d')| A=a, B=b]$$
 
-as long as $$d>d'$$
+as long as d>d'
 
 Thus, by the Manski result, 
 
 $$E[F(2)-F(0)|A=a] \ge E[F|B=2,A=a]-E[F|B=0,A=a]$$ 
 
-We know $$E[F|B=2,A=a]=0$$, so the estimate of how much $F$ changed can be bounded *below* by the expected F if B=0. Similarly, we can estimate the value of C if there's no pandemic by bounding it above by 
+We know $$E[F|B=2,A=a]=0$$, so the estimate of how much <i>F</i> changed can be bounded *below* by the expected <i>F</i> if <i>B</i>=0. Similarly, we can estimate the value of C if there's no pandemic by bounding it above by 
 
 </p>
 
-<p> To help us get to these variables, recall the analysis done on the variable D. Considering the data set for TV ratings from 1989 to 2022, we run a simple linear regression on the data given, and we can estimate that
+<p> To help us get to these variables, recall the analysis done on the variable <i>D</i>. Considering the data set for TV ratings from 1989 to 2022, we run a simple linear regression on the data given, and we can estimate that
 
 	D = 0.5 + 0.1875A -0.125B.
 
-This implies that if B changed from 2 to 0, there is a 75 percent chance that D would equal 0, and a 25 percent change that D would equal 1. One could also add an AB term (this breaks the assumption that the regression is purely linear). However, given the limited data, specifically that B is positive in only three years, render this somewhat pointless (however, if we had more data, it would certainly be worth doing!)
+This implies that if <i>B</i> changed from 2 to 0, there is a 75 percent chance that <i>D</i> would equal 0, and a 25 percent change that <i>D</i> would equal 1. One could also add an <i>AB</i> term (this breaks the assumption that the regression is purely linear). However, given the limited data, specifically that <i>B</i> is positive in only three years, render this somewhat pointless (however, if we had more data, it would certainly be worth doing!)
 </p>
 
-<p> Another way to interpret the data is to calculate a series of E-values. Suppose we disregard A and only intervene on B. Then U,A,Y become A, B, and C respectively. This means the E-value we seek is based on $$RR_{BC}^{obs}$$.
+<p> Another way to interpret the data is to calculate a series of E-values. Suppose we disregard <i>A</i> and only intervene on <i>B</i>. Then <i>U,A,Y</i> in the examples become <i>A</i>, <i>B</i>, and <i>C</i> respectively. This means the E-value we seek is based on $$RR_{BC}^{obs}$$.
 
 <p>
 
-The value RR_{AY}^{obs} -- or. in this case, RR_{BC}^{obs} -- is equal to E[C|B=2]/E[C|B=0]. We know the numerator is 1. What is E[C|B=0]? That is what we seek. 
+The value RR_{AY}^{obs} -- or. in this case, RR_{BC}^{obs} -- is equal to E[C|B=2]/E[C|B=0]. We know the numerator is 1. What is <i>E[C|B=0]</i>? That is what we seek. 
 
 </p>
 
 
 <h3> <FONT COLOR = "blue">Assumption Violation</FONT></h3>
 
-<p>There are a few things that could happen if our assumption is violated. If we change our assumption that A is changeable and stop intervening on it, it becomes an unmeasured confounder. This allows for the use of E-values. However, the classic sensitivity analysis has limited use in this example as we are not typically able to come up with the requisite data -- this is a hypothetical situation! Indeed, <i>there is no year</i> where B is nonzero and D is zero other than 2020, so the relative risk cannot be calculated in some steps. More specifically, the value of $RR_{BA}$ does not really make sense in this context. </p>
+<p>There are a few things that could happen if our assumption is violated. If we change our assumption that <i>A</i> is changeable and stop intervening on it, it becomes an unmeasured confounder. This allows for the use of E-values. However, the classic sensitivity analysis has limited use in this example as we are not typically able to come up with the requisite data -- this is a hypothetical situation! Indeed, <i>there is no year</i> where B is nonzero and <i>D</i> is zero other than 2020, so the relative risk cannot be calculated in some steps. More specifically, the value of $RR_{BA}$ does not really make sense in this context. </p>
 
 <p>There is also the possibility that (insert) </p>
 
-<p>So let's use IPV and regression to give our best estimation, assuming everything we've talked about actually holds. Admittedly, this seems to be the major question. If B=0 then D would have risen to about 0.25. Meanwhile G is expected to be about 4.5, by the results on the previous page. Finally, F can be analyzed using monotony nd we analyze C. </p>
+<p>So let's use IPV and regression to give our best estimation, assuming everything we've talked about actually holds. Admittedly, this seems to be the major question. If <i>B=0</i> then <i>D</i> would have risen to about 0.25. Meanwhile <i>G</i> is expected to be about 4.5, by the results on the previous page. Finally, <i>F</i> can be analyzed using monotony nd we analyze <i>C</i>. </p>
 
 </body>
