@@ -27,9 +27,9 @@ It is very sensitive to the inclusion of other unmeasured confounders. We will c
 
 <h3> <FONT COLOR = "blue">Strategies and Alternatives</FONT></h3>
 
-<p>First, we consider that there are no specifically defined unmeasured confounding variables -- at least, <i>none that are connected to A</i>. This is because the exact cause of the pandemic remains unknown, and regardless of what it is, a hypothetical U would not have affected other variables independently -- i.e. it is an instrument variable, connected only to <i>A</i>. This limits the</p>
+<p>First, we consider that there are no specifically defined unmeasured confounding variables -- at least, <i>none that are connected to A</i>. This is because the exact cause of the pandemic remains unknown, and regardless of what it is, a hypothetical U would not have affected other variables independently -- i.e. it is an instrument variable, connected only to <i>A</i>. This limits the types of sensitivity analyses that can viably be done.</p>
 
-<p>Despite the lack of a defined U, we can do Manski sensitivity analysis on our given SWIG. There are two arrows that I consider to be likely to be monotone. Specifically, those are <i>B&rarr;F</i> and <i>D&rarr;C</i>. The former is monotone because restrictions caused by pandemics will most definitely limit how social people are. The latter is monotone because more postseason games will obviously mean more home runs.</p>
+<p>Despite the lack of a defined U, we can do Manski sensitivity analysis on our given SWIG. There are two arrows that I consider to be likely to be monotone. Specifically, those are <i>B&rarr;F</i> and <i>E&rarr;G</i>. The former is monotone because restrictions caused by pandemics will most definitely limit how social people are. The latter is monotone because more postseason games will obviously mean more home runs.</p>
 
 <h3> <FONT COLOR = "blue">What This Means Mathematically</FONT></h3>
 <p> Consequently,
@@ -38,40 +38,49 @@ $$E[F(b)| A=a] \ge E[F(b')| A=a]$$
 
 as long as b < b' and
 
-$$E[C(d)| A=a, B=b] \geE[C(d')| A=a, B=b]$$
+$$E[G(e)| A=a, B=b] \geE[G(e')| A=a, B=b]$$
 
-as long as d>d'.
+as long as e>e'.
 
 Thus, by the Manski result, 
 
 $$E[F(2)-F(0)|A=a] \ge E[F|B=2,A=a]-E[F|B=0,A=a]$$ 
 
-We know $$E[F|B=2,A=a]=0,$$ so the estimate of how much <i>F</i> changed can be bounded *below* by the expected <i>F</i> if <i>B</i>=0. Similarly, we can estimate the value of C if there's no pandemic by bounding it above by 
+We know $$E[F|B=2,A=a]=0,$$ so the estimate of how much <i>F</i> changed can be bounded *below* by the expected <i>F</i> if <i>B</i>=0. Similarly, we can estimate the change in the value of G (home run count) by looking at the case in which the Rays don't make the postseason (corresponding to all but a select few values of E), but this is pointless as, in that case, E[G]=0.
 
 </p>
 
-<p> To help us get to these variables, recall the analysis done on the variable <i>D</i>. Considering the data set for TV ratings from 1989 to 2022, we run a simple linear regression on the data given, and we can estimate that
+<h3> <FONT COLOR = "blue">Expanding on the Last Page</FONT></h3>
+<p> If we were to focus on an IPW/regression method to solve this problem, we would need to go through <i>D</i>. Considering the data set for TV ratings from 1989 to 2022, we run a simple linear regression on the data given, and we can estimate that
 
 	D = 0.5 + 0.1875A -0.125B.
 
-This implies that if <i>B</i> changed from 2 to 0, there is a 75 percent chance that <i>D</i> would equal 0, and a 25 percent change that <i>D</i> would equal 1. One could also add an <i>AB</i> term (this breaks the assumption that the regression is purely linear). However, given the limited data, specifically that <i>B</i> is positive in only three years, render this somewhat pointless (however, if we had more data, it would certainly be worth doing!)
+This implies that if <i>B</i> changed from 2 to 0, there is a 75 percent chance that <i>D</i> would equal 0, and a 25 percent change that <i>D</i> would equal 1. Since <i>D</i> cannot be less than zero, this means that
+
+$$0 \le E[D(a=1,b=0)] \le 0.25$$
+
+by Manski bounding. One could also add an <i>AB</i> term (this breaks the assumption that the regression is purely linear). However, given the limited data, specifically that <i>B</i> is positive in only three years, render this somewhat pointless (however, if we had more data, it would certainly be worth doing!)
 </p>
 
-<p> Another way to interpret the data is to calculate a series of E-values. Suppose we disregard <i>A</i> and only intervene on <i>B</i>. Then <i>U,A,Y</i> in the examples become <i>A</i>, <i>B</i>, and <i>C</i> respectively. This means the E-value we seek is based on RR<sub>BC</sub><sup>obs</sup>.
+<p> Another way to interpret the data is to calculate a series of E-values. Suppose we disregard <i>A</i> and only intervene on <i>B</i>. Then <i>U,A,Y</i> in the examples become <i>A</i>, <i>B</i>, and <i>C</i> respectively. This means the E-value we seek is based on $RR_{BC}^{obs}$ -- and this determines whether <i>A</i> or <i>B</i> has a greater causal effect on <i>C</i>
 
 <p>
 
-The above relative risk is equal to E[C|B=2]/E[C|B=0]. We know the numerator is 1. What is <i>E[C|B=0]</i>? That is what we seek. 
+The above relative risk is equal to E[C|B=2]/E[C|B=0]. We know the numerator is 1. What is <i>E[C|B=0]</i>? That is what we seek -- these allow us to interpret results rather than find them. It remains to be seen how exactly to find this expected value.
 
 </p>
 
 
 <h3> <FONT COLOR = "blue">Assumption Violation</FONT></h3>
 
-<p>There are a few things that could happen if our assumption is violated. If we change our assumption that <i>A</i> is changeable and stop intervening on it, it becomes an unmeasured confounder. This allows for the use of E-values. However, the classic sensitivity analysis has limited use in this example as we are not typically able to come up with the requisite data -- this is a hypothetical situation! Indeed, due to the limitations of my data,<i>there is no year</i> where B is nonzero and <i>D</i> is zero other than 2020, so the relative risk cannot be calculated in some steps. More specifically, the value of $RR_{BA}$ does not really make sense in this context. </p>
+<p>There are a few things that could happen if an assumption is violated. If we change our assumption that <i>A</i> is changeable and stop intervening on it, it becomes an (instrumental) unmeasured confounder. This allows for Rosenbaum or Vanderweele analysis. However, the classic sensitivity analysis has limited use in this example as we are not typically able to come up with the requisite data -- this is a hypothetical situation! Indeed, due to the limitations of my data,<i>there is no year</i> (since 1989, where my data begins) where B is nonzero and <i>D</i> is zero other than 2020, so the relative risk cannot be calculated for all of the arrows. Also, the value of $RR_{BA}$ does not really make sense in this context, as despite the arrow from <i>A</i> to <i>B</i>, the interactions between them are beyond the scope of this project. </p>
 
-<p>There is also the possibility that (insert) </p>
+<p>There is also the possibility that there are relations in this SWIG that are not Markov compatible. However, if that is the case, we can rectify the problem by adding more arrows.</p>
 
-<p>So let's use IPV and regression to give our best estimation, assuming everything we've talked about actually holds. Admittedly, this seems to be the major question. If <i>B=0</i> then <i>D</i> would have risen to about 0.25. Meanwhile <i>G</i> is expected to be about 4.5, by the results on the previous page. Finally, <i>F</i> can be analyzed using monotony and we analyze <i>C</i>. </p>
+<p>So, in general, we can use IPW and regression to give our best estimation of E[C(a,b)], or more specifically E[C(0,0)], assuming everything we've talked about actually holds.</p>
+
+<h3> <FONT COLOR = "blue">Summary of What We Know + Future Investigation + A Pitfall?</FONT></h3>
+
+<p> If <i>B=0</i> then <i>D</i> would rise to about 0.25. Meanwhile <i>G</i> is expected to be about 4.5, by the results on the previous page. <i>F</i>, by assumption, would increase to about 0.1. And from these and these alone we can, assuming Markov Compatibility, develope a system to estimate <i>C</i>. One potential pitfall of this is that a good measure of <i>C</i> is social media followers -- however, this severely limits our temporal historical data points to since about 2015, as prior to this year, benchmarks would be different.</p>
 
 </body>
