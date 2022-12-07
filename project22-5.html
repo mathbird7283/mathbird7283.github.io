@@ -13,7 +13,7 @@ src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
 <h2> The Magic In Action </h2>
 <p>Consider the following SWIG, comprising seven discrete random variables.</p>
 
-<img src="s.jpg" alt = "<== This One." width="155" height="155">
+<img src="s2.jpg" alt = "<== This One." width="155" height="155">
 
 
 <p> The variables are defined as follows:</p>
@@ -47,7 +47,7 @@ $$E(\frac{1_{D=d}C}{P(D=d|A,B)})$$ so the key is finding propensity scores for D
 
 <p>Additionally, In each year, we will consider the observed values of A and B as follows -- setting A to 1 if there was a major life disruption during the year (this, of course, is relative) and B to 1 if there were significant interventions on daily life as a result of it:</p>
 <ol>
-<li>Obviously, what counts as a "major life disruption" is subjective, and I was not alivee during the first four of these, but I decided to set A=1 in 1969 (Hong Kong Flu), 1974 (End of Vietnam War), 1981 (AIDS epidemic, MLB strike), 1989 (Tiananmen Square, Fall of the Berlin Wall), 1991 (Breakup of the Soviet Union), 1999 (Y2K Bug), 2001 (September 11 Attacks), 2009 (Swine Flu), 2020 and 2021 (COVID-19 Pandemic), and A=0 in all other years.</li>
+<li>Obviously, what counts as a "major life disruption" is subjective, and I was not alive during the first four of these, but I decided to set A=1 in 1969 (Hong Kong Flu), 1974 (End of Vietnam War), 1981 (AIDS epidemic, MLB strike), 1989 (Tiananmen Square, Fall of the Berlin Wall), 1991 (Breakup of the Soviet Union), 1999 (Y2K Bug), 2001 (September 11 Attacks), 2009 (Swine Flu), 2020 and 2021 (COVID-19 Pandemic), and A=0 in all other years.</li>
 <li>B=1 in 1981 (due to certain fear of AIDS as well as the baseball strike) and 2001 (due to 9/11 and security concerns). In 2020 B is equal to 2, as many things were cancelled or disallowed for the first time since 1945 (and the given data only goes back to 1968).</li>
 </ol>
 
@@ -60,7 +60,7 @@ $$E(\frac{1_{D=d}C}{P(D=d|A,B)})$$ so the key is finding propensity scores for D
 <li>B=4 ⇒no season</li>
 </ol>
 
-From here we clearly see that independent of A, E[G(a,4)]=0.  For the remaining cases, we use inverse probability weighing as above.
+From here we clearly see that independent of A, E[C(a,4)]=0.  For the remaining cases, we use inverse probability weighing as above.
 
 <h3> <FONT COLOR = "blue">What is the Data Being Used? </FONT></h3>
 
@@ -91,6 +91,8 @@ I ran an algorithm to estimate the number of home runs Randy Arozarena would hav
 <li> What did happen: The Rays won 11 postseason games and lost 9. Randy hit 5 home runs in games they won and 5 home runs in games they lost. Hence in a "normal postseason" he would be expected to his 4.557 home runs at current rates. This is likely not enough to cause as much public interest.</li>
 
 </ul>
+
+<p><a href="filename.html">What's Next </a></p>
 
 For additional background on the methods used here consult the online textbook "What If" by Hernan and Robins (particularly in Chapter 15), available <a href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">here</a>.
 </body>
