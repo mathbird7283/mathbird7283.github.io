@@ -1,0 +1,46 @@
+We now consider sensitivity analysis on this data set. A few modifications can be made.
+
+We focus on Manski analysis. The one challenge is that in the SWIG there are few relations that we can safely assume are 3monotone. Of the eleven arrows in the graph, only 2 are monotone. They are
+
+E[F(b)|B=b, A=a] >= E[F(b)|B=b', A=a]
+
+as long as b>b', and
+
+E[C(d)|D=d, A=a, B=b] >= E[C(d')|D=d', A=a, B=b]
+
+as long as d>d'. The former comes from the fact that pandemic restrictions, regardless of the actual level of disease spread, negatively affect people's degree of social interaction. The latter come from the fact that ...
+
+What this means is that given A and B, 
+
+E[C(d=1)-C(d=0)|A,B]
+
+is at least 0, and at most ...
+
+There bee many 
+
+Assumptions:
+
+I'm generally working under the assumption that there are no unmeasured confounding, as the cause of the pnademic itself remains a mystery, and the two leading options would not have affected anything else in the SWIG except through A itself. *However*, we can eliminate A from the graph and look only at B, letting A be a confounding variable. This allows for a sensitivity analysis analysis.
+
+There are certainyl alternative ways to go about this. First, we can change which variables are worth mentioning -- why is F so important? Could we replace it with another tbd variable?
+
+I can also use the regression I mentioned -- requires only some basic matrix algebra.
+
+If I modify my aasumption about the lack of a confounding variable (which we will denote "Karma"), then I can use the VW analysis as there are several finite non-binary variables. Let me see how those affect it.
+
+Some assumptions are uninvestigatable. 
+
+It's not really possible to investigate sutva and such as this is central to my argument and allows the swig to be defined. A major assumption...
+
+Distributions might not be markov compatible. However, if that is the case we can essentially add more arrows, if non-parent "ancestors" affect variables further along in the graph.
+
+Another assumption: Arozarena himself would not die of covid in any cirsumstance (this seems unlikely as he did contract vodi in mid-2020 and recovered enough to become a household name with his postseason performance).
+Alternative strategies:
+
+Adding/removing variables from the graph (moderately openended ideae). Calculating E-vaues likely to be relvant.
+
+Any example E-values we can do?
+
+It's worth considering E[Y|A=1]/E[Y|A=0]... but what should Y be? If Y is G. Assume E[Y|A=1] = 1. 
+
+Regression -- perform it. But how?
